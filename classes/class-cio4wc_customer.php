@@ -37,6 +37,7 @@ class CIO4WC_Customer {
 
                 // Delete test data
                 if ( $_GET['action'] === 'delete_test_data' ) {
+                    $profile_url = "profile.php?user_id={$profileuser->ID}";
 
                     // Delete test data if the action has been confirmed
                     if ( ! empty( $_GET['confirm'] ) && $_GET['confirm'] === 'yes' ) {
@@ -64,7 +65,7 @@ class CIO4WC_Customer {
                         <div class="error">
                             <p><?php _e( 'Are you sure you want to delete customer test data? This action cannot be undone.', 'chargeio-for-woocommerce' ); ?></p>
                             <p>
-                                <a href="<?php echo wp_nonce_url( admin_url( 'profile.php?action=delete_test_data&confirm=yes' ), 'cio4wc_action' ); ?>" class="button"><?php _e( 'Delete', 'chargeio-for-woocommerce' ); ?></a>
+                                <a href="<?php echo wp_nonce_url( admin_url( "$profile_url&action=delete_test_data&confirm=yes" ), 'cio4wc_action' ); ?>" class="button"><?php _e( 'Delete', 'chargeio-for-woocommerce' ); ?></a>
                                 <a href="<?php echo admin_url( 'profile.php' ); ?>" class="button"><?php _e( 'Cancel', 'chargeio-for-woocommerce' ); ?></a>
                             </p>
                         </div>
@@ -98,7 +99,7 @@ class CIO4WC_Customer {
                         <div class="error">
                             <p><?php _e( 'Are you sure you want to delete customer live data? This action cannot be undone.', 'chargeio-for-woocommerce' ); ?></p>
                             <p>
-                                <a href="<?php echo wp_nonce_url( admin_url( 'profile.php?action=delete_live_data&confirm=yes' ), 'cio4wc_action' ); ?>" class="button"><?php _e( 'Delete', 'chargeio-for-woocommerce' ); ?></a>
+                                <a href="<?php echo wp_nonce_url( admin_url( "$profile_url&action=delete_live_data&confirm=yes" ), 'cio4wc_action' ); ?>" class="button"><?php _e( 'Delete', 'chargeio-for-woocommerce' ); ?></a>
                                 <a href="<?php echo admin_url( 'profile.php' ); ?>" class="button"><?php _e( 'Cancel', 'chargeio-for-woocommerce' ); ?></a>
                             </p>
                         </div>
@@ -121,13 +122,15 @@ class CIO4WC_Customer {
         if ( ! current_user_can( 'manage_woocommerce' ) ) {
             return;
         }
+
+        $profile_url = "profile.php?user_id={$user->ID}";
         ?>
         <table class="form-table">
             <tr>
                 <th>Delete ChargeIO Test Data</th>
                 <td>
                     <p>
-                        <a href="<?php echo wp_nonce_url( admin_url( 'profile.php?action=delete_test_data' ), 'cio4wc_action' ); ?>" class="button"><?php _e( 'Delete Test Data', 'chargeio-for-woocommerce' ); ?></a>
+                        <a href="<?php echo wp_nonce_url( admin_url( "$profile_url&action=delete_test_data" ), 'cio4wc_action' ); ?>" class="button"><?php _e( 'Delete Test Data', 'chargeio-for-woocommerce' ); ?></a>
                         <span class="description"><?php _e( '<strong class="red">Warning:</strong> This will delete ChargeIO test data for this customer, make sure to back up your database.', 'chargeio-for-woocommerce' ); ?></span>
                     </p>
                 </td>
@@ -136,7 +139,7 @@ class CIO4WC_Customer {
                 <th>Delete ChargeIO Live Data</th>
                 <td>
                     <p>
-                        <a href="<?php echo wp_nonce_url( admin_url( 'profile.php?action=delete_live_data' ), 'cio4wc_action' ); ?>" class="button"><?php _e( 'Delete Live Data', 'chargeio-for-woocommerce' ); ?></a>
+                        <a href="<?php echo wp_nonce_url( admin_url( "$profile_url&action=delete_live_data" ), 'cio4wc_action' ); ?>" class="button"><?php _e( 'Delete Live Data', 'chargeio-for-woocommerce' ); ?></a>
                         <span class="description"><?php _e( '<strong class="red">Warning:</strong> This will delete ChargeIO live data for this customer, make sure to back up your database.', 'chargeio-for-woocommerce' ); ?></span>
                     </p>
                 </td>
