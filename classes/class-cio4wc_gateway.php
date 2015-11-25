@@ -122,7 +122,7 @@ class CIO4WC_Gateway extends WC_Payment_Gateway {
 
         // Check for API Keys
         if ( ! $cio4wc->settings['publishable_key'] && ! $cio4wc->settings['secret_key'] ) {
-            echo '<div class="error"><p>' . __( 'ChargeIO needs API Keys to work, please find your secret and publishable keys in the <a href="https://manage.chargeio.com/account/apikeys" target="_blank">ChargeIO accounts section</a>.', 'chargeio-for-woocommerce' ) . '</p></div>';
+            echo '<div class="error"><p>' . __( 'ChargeIO needs API Keys to work, please find your secret and publishable keys in the <a href="https://secure.affinipay.com/settings/advanced" target="_blank">Developer Settings</a>.', 'chargeio-for-woocommerce' ) . '</p></div>';
             return false;
         }
 
@@ -279,7 +279,7 @@ class CIO4WC_Gateway extends WC_Payment_Gateway {
         $options_base = 'admin.php?page=wc-settings&tab=checkout&section=' . strtolower( get_class( $this ) );
         ?>
         <h3><?php echo ( ! empty( $this->method_title ) ) ? $this->method_title : __( 'Settings', 'woocommerce' ) ; ?></h3>
-        <p><?php _e( 'Allows Credit Card payments through <a href="https://chargeio.com/">ChargeIO</a>. You can find your API Keys in your <a href="https://dashboard.chargeio.com/account/apikeys">ChargeIO Account Settings</a>.', 'chargeio-for-woocommerce' ); ?></p>
+        <p><?php _e( 'Allows Credit Card payments through <a href="https://chargeio.com/">ChargeIO</a>. You can manage your API Keys in your <a href="https://secure.affinipay.com/settings/advanced">Developer Settings</a>.', 'chargeio-for-woocommerce' ); ?></p>
         <table class="form-table">
             <?php $this->generate_settings_html(); ?>
             <tr>
@@ -310,7 +310,7 @@ class CIO4WC_Gateway extends WC_Payment_Gateway {
 
         // Main chargeio js
         wp_dequeue_script( 'stripe');
-        wp_enqueue_script( 'chargeio', 'https://staging.chargeio.com/assets/api/v1/chargeio.js', false, '1.0', true );
+        wp_enqueue_script( 'chargeio', 'https://api.chargeio.com/assets/api/v1/chargeio.min.js', false, '1.0', true );
 
         // Plugin js
         wp_enqueue_script( 'cio4wc_js', plugins_url( 'assets/js/cio4wc.js', dirname( __FILE__ ) ), array( 'chargeio', 'wc-credit-card-form' ), '1.36', true );
