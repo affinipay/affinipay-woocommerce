@@ -35,31 +35,3 @@ The manual installation method involves downloading our eCommerce plugin and upl
 The plugin should automatically update with new features, but you could always download the new version of the plugin and manually update the same way you would manually install.
 
 
-== Screenshots ==
-
-1. The standard credit card form on the checkout page.
-2. The form with saved cards and an icon for card identification.
-3. Saved cards displayed on the account page.
-4. Changing payment method for a subscription.
-
-== Frequently Asked Questions ==
-
-= Does I need to have an SSL Certificate? =
-
-Yes you do. For any transaction involving sensitive information, you should take security seriously, and credit card information is incredibly sensitive. This plugin disables itself if you try to process live transactions without an SSL certificate.
-
-== Changelog ==
-
-= 1.0 =
-
-* Feature: ChargeIO fee is added to order details
-* Feature: Refunds! With WC 2.2, refunds were introduced
-* Feature: Ability to delete ChargeIO account data per individual customer
-* Feature: Filters for customer and charge descriptions sent to ChargeIO
-* Feature: Button to delete all test data
-* Feature: Charge a guest using ChargeIO
-* Feature: Create a customer in ChargeIO for logged in users
-* Feature: Charge a ChargeIO customer with a saved card
-* Feature: Add a card to a customer
-* Feature: Delete cards from customers
-* Feature: Authorize & Capture or Authorize only 
