@@ -215,8 +215,8 @@ class CIO4WC_API {
         $parsed_response = json_decode( $response['body'] );
 
         // Handle response
-        if ( ! empty( $parsed_response->error ) && ! empty( $parsed_response->error->code ) ) {
-            throw new Exception( $parsed_response->error->code );
+        if ( ! empty( $parsed_response->messages ) && ! empty( $parsed_response->messages[0]->code ) ) {
+            throw new Exception( $parsed_response->messages[0]->code );
         } elseif ( empty( $parsed_response->id ) ) {
             throw new Exception( 'cio4wc_invalid_response' );
         }

@@ -91,33 +91,25 @@ class CIO4WC {
         switch ( $e->getMessage() ) {
 
             // Messages from ChargeIO API
-            case 'incorrect_number':
+            case 'card_number_incorrect':
                 $message = __( 'Your card number is incorrect.', 'chargeio-for-woocommerce' );
                 break;
-            case 'invalid_number':
+            case 'card_number_invalid':
                 $message = __( 'Your card number is not a valid credit card number.', 'chargeio-for-woocommerce' );
                 break;
-            case 'invalid_expiry_month':
-                $message = __( 'Your card\'s expiration month is invalid.', 'chargeio-for-woocommerce' );
-                break;
-            case 'invalid_expiry_year':
-                $message = __( 'Your card\'s expiration year is invalid.', 'chargeio-for-woocommerce' );
-                break;
-            case 'invalid_cvc':
-                $message = __( 'Your card\'s security code is invalid.', 'chargeio-for-woocommerce' );
-                break;
-            case 'expired_card':
-                $message = __( 'Your card has expired.', 'chargeio-for-woocommerce' );
-                break;
-            case 'incorrect_cvc':
+            case 'card_cvv_incorrect':
                 $message = __( 'Your card\'s security code is incorrect.', 'chargeio-for-woocommerce' );
                 break;
-            case 'incorrect_zip':
-                $message = __( 'Your zip code failed validation.', 'chargeio-for-woocommerce' );
+            case 'card_expired':
+                $message = __( 'Your card has expired.', 'chargeio-for-woocommerce' );
                 break;
             case 'card_declined':
+            case 'card_declined_insufficient_funds':
+            case 'card_declined_limit_exceeded':
                 $message = __( 'Your card was declined.', 'chargeio-for-woocommerce' );
                 break;
+            case 'card_declined_insufficient_funds':
+ 
 
             // Messages from CIO4WC
             case 'cio4wc_problem_connecting':

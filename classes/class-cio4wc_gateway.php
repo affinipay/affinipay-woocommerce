@@ -83,11 +83,6 @@ class CIO4WC_Gateway extends WC_Payment_Gateway {
             return false;
         }
 
-        // Disable plugin if we don't use ssl
-        if ( ! is_ssl() && $this->settings['testmode'] === 'no' ) {
-            return false;
-        }
-
         // Allow smaller orders to process for WooCommerce Bookings
         if ( is_checkout_pay_page() ) {
             $order_key = urldecode( $_GET['key'] );
