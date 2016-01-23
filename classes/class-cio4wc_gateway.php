@@ -199,16 +199,6 @@ class CIO4WC_Gateway extends WC_Payment_Gateway {
                 'description'   => __( 'This controls the description which the user sees during checkout.', 'chargeio-for-woocommerce' ),
                 'default'       => '',
             ),
-            'charge_type' => array(
-                'type'          => 'select',
-                'title'         => __( 'Charge Type', 'chargeio-for-woocommerce' ),
-                'description'   => __( 'Choose to capture payment at checkout, or authorize only to capture later.', 'chargeio-for-woocommerce' ),
-                'options'       => array(
-                    'capture'   => __( 'Authorize & Capture', 'chargeio-for-woocommerce' ),
-                    'authorize' => __( 'Authorize Only', 'chargeio-for-woocommerce' )
-                ),
-                'default'       => 'capture'
-            ),
             'additional_fields' => array(
                 'type'          => 'checkbox',
                 'title'         => __( 'Additional Fields', 'chargeio-for-woocommerce' ),
@@ -558,9 +548,6 @@ class CIO4WC_Gateway extends WC_Payment_Gateway {
             // Allow for any type of charge to use the same try/catch config
             $this->charge_set_up();
 
-            // Save data for the "Capture"
-            update_post_meta( $this->order->id, '_cio4wc_capture', strcmp( $this->settings['charge_type'], 'authorize' ) == 0 );
-
             // Save ChargeIO fee
             if ( isset( $this->charge->balance_transaction ) && isset( $this->charge->balance_transaction->fee ) ) {
                 $chargeio_fee = number_format( $this->charge->balance_transaction->fee / 100, 2, '.', '' );
@@ -768,7 +755,7 @@ class CIO4WC_Gateway extends WC_Payment_Gateway {
         // Set up basics for charging
         $chargeio_charge_data['amount']   = $this->form_data['amount']; // amount in cents
         $chargeio_charge_data['currency'] = strtoupper($this->form_data['currency']);
-        $chargeio_charge_data['auto_capture']  = ( $this->settings['charge_type'] == 'capture' ) ? 'true' : 'false';
+        $chargeio_charge_data['auto_capture']  = 'true';
 
         // Make sure we only create customers if a user is logged in
         if ( is_user_logged_in() && $this->settings['saved_cards'] === 'yes' ) {

@@ -139,7 +139,8 @@ class CIO4WC {
             $order_id = $_POST['order_id'];
         }
 
-        // `_cio4wc_capture` added in 1.35, let `capture` last for a few more updates before removing
+        // Manual capture is not supported at this time
+        /*
         if ( get_post_meta( $order_id, '_cio4wc_capture', true ) || get_post_meta( $order_id, 'capture', true ) ) {
 
             $order = new WC_Order( $order_id );
@@ -174,6 +175,7 @@ class CIO4WC {
                 );
             }
         }
+        */
     }
 }
 
