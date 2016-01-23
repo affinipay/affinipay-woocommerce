@@ -121,7 +121,7 @@ class CIO4WC_API {
      * @return      array
      */
     public static function create_refund( $transaction_id, $refund_data ) {
-        return CIO4WC_API::post_data( $refund_data, 'charges/' . $transaction_id . '/refunds' );
+        return CIO4WC_API::post_data( $refund_data, 'charges/' . $transaction_id . '/refund' );
     }
 
     /**

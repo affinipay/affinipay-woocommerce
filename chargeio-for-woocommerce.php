@@ -145,7 +145,6 @@ class CIO4WC {
             $order = new WC_Order( $order_id );
             $params = array(
                 'amount' => isset( $_POST['amount'] ) ? $_POST['amount'] : $order->order_total * 100,
-                'expand[]' => 'balance_transaction',
             );
 
             try {

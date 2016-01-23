@@ -494,14 +494,19 @@ class CIO4WC_Gateway extends WC_Payment_Gateway {
 
             $refund_data = array();
 
-            // If the amount is set, refund that amount, otherwise the entire amount is refunded
-            if ( $amount ) {
-                $refund_data['amount'] = $amount * 100;
+            if ( ! $amount ) {
+                return new WP_Error( 'cio4wc_refund_error',
+                    sprintf(
+                        __( '%s Credit Card Refund failed because no amount was specified.', 'chargeio-for-woocommerce' ),
+                        get_class( $this )
+                    )
+                );
             }
 
-            // If a reason is provided, add it to the ChargeIO metadata for the refund
+            $refund_data['amount'] = $amount * 100;
+
             if ( $reason ) {
-                $refund_data['metadata']['reason'] = $reason;
+                $refund_data['reference'] = $reason;
             }
 
             // Send the refund to the ChargeIO API
