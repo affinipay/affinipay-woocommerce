@@ -46,12 +46,16 @@ jQuery( function ( $ ) {
         if ( $( '#payment_method_cio4wc' ).is( ':checked' ) && ( ! $( 'input[name="cio4wc_card"]' ).length || $( 'input[name="cio4wc_card"]:checked' ).val() === 'new' ) ) {
 
             if ( ! $( 'input.chargeio_token' ).length ) {
-                var cardExpiry = $ccExpiry.payment( 'cardExpiryVal' ),
-                    name = ( $( '#billing_first_name' ).val() || $( '#billing_last_name' ).val() ) ? $( '#billing_first_name' ).val() + ' ' + $( '#billing_last_name' ).val() : cio4wc_info.billing_name;
 
+                var aryExpiry = $('#cio4wc-card-expiry').val().split('/');
+                var cardExpiry = {
+                    month: aryExpiry[0].replace(' ', ''),
+                    year: aryExpiry[1].replace(' ', '')
+                };
+                var name = ( $( '#billing_first_name' ).val() || $( '#billing_last_name' ).val() ) ? $( '#billing_first_name' ).val() + ' ' + $( '#billing_last_name' ).val() : cio4wc_info.billing_name;
                 var chargeioData = {
-                    number          : $ccNumber.val() || '',
-                    cvv             : $ccCvc.val() || '',
+                    number          : $('#cio4wc-card-number').val() || '',
+                    cvv             : $('#cio4wc-card-cvc').val() || '',
                     exp_month       : cardExpiry.month || '',
                     exp_year        : cardExpiry.year || '',
                     name            : $( '.cio4wc-billing-name' ).val() || name || '',
