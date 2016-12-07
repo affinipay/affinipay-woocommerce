@@ -2,7 +2,7 @@
 /*
  * Plugin Name: ChargeIO for WooCommerce
  * Description: Use ChargeIO for collecting credit card payments on WooCommerce.
- * Version: 1.0
+ * Version: 1.1
  * Author: Domenic Schiera
  *
  * License: GNU General Public License v3.0
