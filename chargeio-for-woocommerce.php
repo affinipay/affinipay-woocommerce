@@ -1,9 +1,9 @@
 <?php
 /*
- * Plugin Name: ChargeIO for WooCommerce
- * Description: Use ChargeIO for collecting credit card payments on WooCommerce.
+ * Plugin Name: AffiniPay WooCommerce
+ * Description: Use the AffiniPay gateway for collecting credit card payments on WooCommerce.
  * Version: 1.2
- * Author: Domenic Schiera
+ * Author: AffiniPay, LLC
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
