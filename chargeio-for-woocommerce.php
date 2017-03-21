@@ -40,6 +40,7 @@ class CIO4WC {
         // API Info
         $this->settings['publishable_key']          = $this->settings['testmode'] == 'yes' ? $this->settings['test_publishable_key'] : $this->settings['live_publishable_key'];
         $this->settings['secret_key']               = $this->settings['testmode'] == 'yes' ? $this->settings['test_secret_key'] : $this->settings['live_secret_key'];
+        $this->settings['account']                  = $this->settings['testmode'] == 'yes' ? $this->settings['test_account'] : $this->settings['live_account'];
 
         // Database info location
         $this->settings['chargeio_db_location']     = $this->settings['testmode'] == 'yes' ? '_chargeio_test_customer_info' : '_chargeio_live_customer_info';
@@ -66,7 +67,6 @@ class CIO4WC {
 
         // Include payment gateway
         include_once( 'classes/class-cio4wc_gateway.php' );
-        $this->settings['account'] = $this->settings['testmode'] == 'yes' ? $this->settings['test_account'] : $this->settings['live_account'];
 
         if ( class_exists( 'WC_Subscriptions_Order' ) ) {
             include_once( 'classes/class-cio4wc_subscriptions_gateway.php' );
