@@ -2,7 +2,7 @@
 /*
  * Plugin Name: AffiniPay WooCommerce
  * Description: Use the AffiniPay gateway for collecting credit card payments on WooCommerce.
- * Version: 1.2
+ * Version: 1.3
  * Author: AffiniPay, LLC
  *
  * License: GNU General Public License v3.0
@@ -60,7 +60,7 @@ class CIO4WC {
      * @return      array
      */
     public function add_chargeio_gateway( $methods ) {
-        if ( ! class_exists( 'WC_Payment_Gateway' ) ) {
+        if ( ! class_exists( 'WC_Payment_Gateway_CC' ) ) {
             return;
         }
 

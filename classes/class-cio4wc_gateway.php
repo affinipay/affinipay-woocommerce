@@ -5,15 +5,15 @@
  * Provides a ChargeIO Payment Gateway.
  *
  * @class       CIO4WC_Gateway
- * @extends     WC_Payment_Gateway
- * @version     1.0
+ * @extends     WC_Payment_Gateway_CC
+ * @version     1.3
  * @package     WooCommerce/Classes/Payment
  * @author      Domenic Schiera
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class CIO4WC_Gateway extends WC_Payment_Gateway {
+class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
     protected $order                     = null;
     protected $form_data                 = null;
     protected $transaction_id            = null;

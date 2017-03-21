@@ -3,7 +3,7 @@
  * Functions for interfacing with ChargeIO's API
  *
  * @class       CIO4WC_API
- * @version     1.0
+ * @version     1.3
  * @author      Domenic Schiera
  */
 

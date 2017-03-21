@@ -3,7 +3,7 @@
  * Customer related modifications and templates
  *
  * @class       CIO4WC_Customer
- * @version     1.0
+ * @version     1.3
  * @author      Domenic Schiera
  */
 

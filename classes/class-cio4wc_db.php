@@ -3,7 +3,7 @@
  * Functions for interfacing with the database
  *
  * @class       CIO4WC_DB
- * @version     1.0
+ * @version     1.3
  * @author      Domenic Schiera
  */
 
