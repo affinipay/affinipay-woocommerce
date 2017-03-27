@@ -6,7 +6,7 @@
  *
  * @class       CIO4WC_Subscriptions_Gateway
  * @extends     CIO4WC_Gateway
- * @version     1.0
+ * @version     1.3
  * @package     WooCommerce/Classes/Payment
  * @author      Domenic Schiera
  */

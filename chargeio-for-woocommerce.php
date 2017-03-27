@@ -2,7 +2,7 @@
 /*
  * Plugin Name: AffiniPay WooCommerce
  * Description: Use the AffiniPay gateway for collecting credit card payments on WooCommerce.
- * Version: 1.2
+ * Version: 1.3
  * Author: AffiniPay, LLC
  *
  * License: GNU General Public License v3.0
@@ -40,10 +40,10 @@ class CIO4WC {
         // API Info
         $this->settings['publishable_key']          = $this->settings['testmode'] == 'yes' ? $this->settings['test_publishable_key'] : $this->settings['live_publishable_key'];
         $this->settings['secret_key']               = $this->settings['testmode'] == 'yes' ? $this->settings['test_secret_key'] : $this->settings['live_secret_key'];
-        $this->settings['account']               = $this->settings['testmode'] == 'yes' ? $this->settings['test_account'] : $this->settings['live_account'];
+        $this->settings['account']                  = $this->settings['testmode'] == 'yes' ? $this->settings['test_account'] : $this->settings['live_account'];
 
         // Database info location
-        $this->settings['chargeio_db_location']       = $this->settings['testmode'] == 'yes' ? '_chargeio_test_customer_info' : '_chargeio_live_customer_info';
+        $this->settings['chargeio_db_location']     = $this->settings['testmode'] == 'yes' ? '_chargeio_test_customer_info' : '_chargeio_live_customer_info';
 
         // Hooks
         add_filter( 'woocommerce_payment_gateways', array( $this, 'add_chargeio_gateway' ) );
@@ -61,7 +61,7 @@ class CIO4WC {
      * @return      array
      */
     public function add_chargeio_gateway( $methods ) {
-        if ( ! class_exists( 'WC_Payment_Gateway' ) ) {
+        if ( ! class_exists( 'WC_Payment_Gateway_CC' ) ) {
             return;
         }
 
