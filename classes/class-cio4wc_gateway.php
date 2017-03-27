@@ -373,11 +373,6 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
 
         // Output the saved card data
         cio4wc_get_template( 'payment-fields.php' );
-
-        // Output WooCommerce 2.1+ cc form
-//        $this->credit_card_form( array(
-//            'fields_have_names' => false,
-//        ) );
         $this->form();
     }
 
