@@ -2,7 +2,7 @@
 
 > A WordPress plugin that integrates the [AffiniPay Payment Gateway](https://developers.affinipay.com/reference/api.html#PaymentGatewayAPI) (aka ChargeIO) with your WooCommerce site.
 
-Plugin version: 1.3
+Plugin version: 1.4
 
 This plugin allows you to accept secure, PCI-compliant credit card payments on your WooCommerce site without passing sensitive cardholder data through your WordPress server.
 
@@ -21,6 +21,26 @@ You must manually upload this plugin to your WordPress server.
 2. Remove `.file` from the file name.
 
 3. [Upload](https://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation) it to WordPress.
+
+# Installation
+
+> Be sure to install, activate, and configure WooCommerce before installing this plugin. You must also enable shipping and add a [shipping zone](https://docs.woocommerce.com/document/setting-up-shipping-zones/) in your WooCommerce settings to run a charge.
+
+## Recommended Installation
+
+1. Login to your Wordpress site's admin panel and select **Plugins** from the navigation sidebar
+
+2. Click the **Add New** button at the top of the **Plugins** page
+
+3. Search for **Affinipay ** and click **Install Now** on the **ChargeIO for WooCommerce** plugin
+
+## Manual Installation
+
+1. Visit the [plugin home page](https://wordpress.org/plugins/affinipay-woocommerce/)
+
+2. Click the **Download** button
+
+3. [Upload](https://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation) the zip file to your WordPress instance
 
 ## Configuration
 After installing and activating the plugin, you must configure it with your [AffiniPay gateway credentials](https://developers.affinipay.com/guides/payment-form-getting-started.html#obtain-credentials) (e.g., [test/live- mode](https://developers.affinipay.com/basics/account-management.html#test-live-creds) public key, secret key, and primary account ID).
