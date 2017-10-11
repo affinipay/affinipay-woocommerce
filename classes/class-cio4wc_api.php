@@ -3,8 +3,8 @@
  * Functions for interfacing with ChargeIO's API
  *
  * @class       CIO4WC_API
- * @version     1.3
- * @author      Domenic Schiera
+ * @version     1.5
+ * @author      AffiniPay, LLC
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly

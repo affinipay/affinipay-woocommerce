@@ -3,8 +3,8 @@
  * Customer related modifications and templates
  *
  * @class       CIO4WC_Customer
- * @version     1.3
- * @author      Domenic Schiera
+ * @version     1.5
+ * @author      AffiniPay, LLC
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
