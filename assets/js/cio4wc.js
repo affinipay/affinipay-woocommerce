@@ -65,7 +65,8 @@ jQuery( function ( $ ) {
                     city    : $( '#billing_city' ).val() || cio4wc_info.billing_city || '',
                     state   : $( '#billing_state' ).val() || cio4wc_info.billing_state || '',
                     postal_code     : $( '.cio4wc-billing-zip' ).val() || $( '#billing_postcode' ).val() || cio4wc_info.billing_postcode || '',
-                    country : $( '#billing_country' ).val() || cio4wc_info.billing_country || ''
+                    country : $( '#billing_country' ).val() || cio4wc_info.billing_country || '',
+                    email   : $( '#billing_email' ).val() || cio4wc_info.billing_email || ''
                 };
 
                 $form.block({
