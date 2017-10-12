@@ -6,9 +6,9 @@
  *
  * @class       CIO4WC_Subscriptions_Gateway
  * @extends     CIO4WC_Gateway
- * @version     1.3
+ * @version     1.5
  * @package     WooCommerce/Classes/Payment
- * @author      Domenic Schiera
+ * @author      AffiniPay, LLC
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly

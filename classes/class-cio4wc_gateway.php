@@ -6,9 +6,9 @@
  *
  * @class       CIO4WC_Gateway
  * @extends     WC_Payment_Gateway_CC
- * @version     1.3
+ * @version     1.5
  * @package     WooCommerce/Classes/Payment
- * @author      Domenic Schiera
+ * @author      AffiniPay, LLC
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -90,7 +90,7 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
             $order_id  = absint( get_query_var( 'order-pay' ) );
             $order     = new WC_Order( $order_id );
 
-            if ( $order->id == $order_id && $order->order_key == $order_key && $this->get_order_total() * 100 < 50) {
+            if ( $order->get_id() == $order_id && $order->order_key == $order_key && $this->get_order_total() * 100 < 50) {
                 return false;
             }
         }
@@ -314,7 +314,7 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
             $order_id  = absint( get_query_var( 'order-pay' ) );
             $order     = new WC_Order( $order_id );
 
-            if ( $order->id == $order_id && $order->order_key == $order_key ) {
+            if ( $order->get_id() == $order_id && $order->order_key == $order_key ) {
                 $cio4wc_info['billing_name']      = $order->billing_first_name . ' ' . $order->billing_last_name;
                 $cio4wc_info['billing_address_1'] = $order->billing_address_1;
                 $cio4wc_info['billing_address_2'] = $order->billing_address_2;
@@ -548,7 +548,7 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
             // Save ChargeIO fee
             if ( isset( $this->charge->balance_transaction ) && isset( $this->charge->balance_transaction->fee ) ) {
                 $chargeio_fee = number_format( $this->charge->balance_transaction->fee / 100, 2, '.', '' );
-                update_post_meta( $this->order->id, 'ChargeIO Fee', $chargeio_fee );
+                update_post_meta( $this->order->get_id(), 'ChargeIO Fee', $chargeio_fee );
             }
 
             return true;
@@ -578,7 +578,7 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
         global $cio4wc;
 
         $output = array();
-        $customer_info = get_user_meta( $this->order->user_id, $cio4wc->settings['chargeio_db_location'], true );
+        $customer_info = get_user_meta( $this->order->get_user_id(), $cio4wc->settings['chargeio_db_location'], true );
 
         if ( $customer_info ) {
 
@@ -600,13 +600,13 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
 
         } else {
 
-            $user = get_userdata( $this->order->user_id );
+            $user = get_userdata( $this->order->get_user_id() );
 
             // Allow options to be set without modifying sensitive data like token, email, etc
             $customer_data = apply_filters( 'cio4wc_customer_data', array(), $this->form_data, $this->order );
 
             // Set default customer description
-            $customer_description = $user->user_login . ' (#' . $this->order->user_id . ' - ' . $user->user_email . ') ' . $this->form_data['customer']['name']; // username (user_id - user_email) Full Name
+            $customer_description = $user->user_login . ' (#' . $this->order->get_user_id() . ' - ' . $user->user_email . ') ' . $this->form_data['customer']['name']; // username (user_id - user_email) Full Name
 
             // Set up basics for customer
             $customer_data['description'] = apply_filters( 'cio4wc_customer_description', $customer_description, $this->form_data, $this->order );
@@ -614,16 +614,16 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
             $customer_data['card']        = $this->form_data['token'];
 
             // Create the customer in the api with the above data
-            $card = CIO4WC_API::save_card( $this->order->user_id, $customer_data );
+            $card = CIO4WC_API::save_card( $this->order->get_user_id(), $customer_data );
 
-            $output['card'] = $this->order->user_id;
+            $output['card'] = $this->order->get_user_id();
         }
 
         // Set up charging data to include customer information
-        $output['customer_id'] = $this->order->user_id;
+        $output['customer_id'] = $this->order->get_user_id();
 
         // Save data for cross-reference between ChargeIO Dashboard and WooCommerce
-        update_post_meta( $this->order->id, 'ChargeIO Customer Id', $customer->id );
+        update_post_meta( $this->order->get_id(), 'ChargeIO Customer Id', $customer->id );
 
         return $output;
     }
@@ -695,7 +695,7 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
      */
     protected function order_complete() {
 
-        if ( $this->order->status == 'completed' ) {
+        if ( $this->order->get_status() == 'completed' ) {
             return;
         }
 
@@ -721,12 +721,12 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
         if ( $this->order && $this->order != null ) {
             return array(
                 'amount'      => $this->get_order_total() * 100 . "",
-                'currency'    => strtolower( $this->order->order_currency ),
+                'currency'    => strtolower( $this->order->get_currency() ),
                 'token'       => isset( $_POST['chargeio_token'] ) ? $_POST['chargeio_token'] : '',
                 'chosen_card' => isset( $_POST['cio4wc_card'] ) ? $_POST['cio4wc_card'] : 'new',
                 'customer'    => array(
-                    'name'          => $this->order->billing_first_name . ' ' . $this->order->billing_last_name,
-                    'billing_email' => $this->order->billing_email,
+                    'name'          => $this->order->get_billing_first_name() . ' ' . $this->order->get_billing_last_name(),
+                    'billing_email' => $this->order->get_billing_email(),
                 ),
                 'errors'      => isset( $_POST['form_errors'] ) ? $_POST['form_errors'] : ''
             );
@@ -744,7 +744,7 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
     private function charge_set_up() {
         global $cio4wc;
 
-        $customer_info = get_user_meta( $this->order->user_id, $cio4wc->settings['chargeio_db_location'], true );
+        $customer_info = get_user_meta( $this->order->get_user_id(), $cio4wc->settings['chargeio_db_location'], true );
 
         // Allow options to be set without modifying sensitive data like amount, currency, etc.
         $chargeio_charge_data = apply_filters( 'cio4wc_charge_data', array(), $this->form_data, $this->order );
@@ -766,7 +766,7 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
             // Update default card
             if ( count( $customer_info['cards'] ) && $this->form_data['chosen_card'] !== 'new' ) {
                 $default_card = $customer_info['cards'][ intval( $this->form_data['chosen_card'] ) ]['id'];
-                CIO4WC_DB::update_customer( $this->order->user_id, array( 'default_card' => $default_card ) );
+                CIO4WC_DB::update_customer( $this->order->get_user_id(), array( 'default_card' => $default_card ) );
             }
 
         } else {

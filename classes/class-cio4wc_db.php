@@ -3,8 +3,8 @@
  * Functions for interfacing with the database
  *
  * @class       CIO4WC_DB
- * @version     1.3
- * @author      Domenic Schiera
+ * @version     1.5
+ * @author      AffiniPay, LLC
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
