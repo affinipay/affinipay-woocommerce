@@ -45,14 +45,14 @@ You must manually upload this plugin to your WordPress server.
 ## Configuration
 After installing and activating the plugin, you must configure it with your [AffiniPay gateway credentials](https://developers.affinipay.com/guides/payment-form-getting-started.html#obtain-credentials) (e.g., [test/live- mode](https://developers.affinipay.com/basics/account-management.html#test-live-creds) public key, secret key, and primary account ID).
 
-If you have more than one [merchant account](https://developers.affinipay.com/basics/account-management.html#merchant-accounts) (e.g., trust, operating, other) associated with your AffiniPay profile, you must use the primary account. Contact [support](mailto:devsupport@affinipay.com) if you need help identifying your primary merchant account. You can also retrieve your merchant account details from the [API](https://developers.affinipay.com/reference/api.html#GetCurrentMerchant). Look for the `"primary": true` property inside the `merchant_accounts` array in the JSON response. The corresponding `id` is your primary account ID. The following example shows a partial response:
+If you have more than one [merchant account](https://developers.affinipay.com/basics/account-management.html#merchant-accounts) (e.g., trust, operating, other) associated with your AffiniPay profile, you must use the primary account. Contact [support](mailto:devsupport@affinipay.com) if you need help identifying your primary merchant account. You can also retrieve your merchant account details from the [API](https://developers.affinipay.com/reference/api.html#GetCurrentMerchant). Look for the `"primary": true` property inside the `merchant_accounts` array in the JSON response. The corresponding `id` and `name` are your primary account's ID and name. The following example shows a partial response:
 ```
 ...
 "merchant_accounts": [
           {
-ACCOUNT ID-- >"id": "wKgFeDz5HF-BPPl08dcADQ",
+ACCOUNT ID--->"id": "wKgFeDz5HF-BPPl08dcADQ",
               "status": "ACTIVE",
-              "name": "Operating",
+ACCOUNT NAME->"name": "Operating",
 PRIMARY?----->"primary": true,
               "required_payment_fields": "name",
               "cvv_policy": "REQUIRE_MATCH_LENIENT",
