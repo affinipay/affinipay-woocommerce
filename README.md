@@ -11,17 +11,6 @@ This plugin allows you to accept secure, PCI-compliant credit card payments on y
 - WordPress 4.4+
 - WooCommerce 3.0+
 
-## Installation
-> Be sure to install, activate, and configure WooCommerce before installing this plugin. You must also enable shipping and add a [shipping zone](https://docs.woocommerce.com/document/setting-up-shipping-zones/) in your WooCommerce settings to run a charge.
-
-You must manually upload this plugin to your WordPress server.
-
-1. Download [chargeio-for-woocommerce.zip.file](./chargeio-for-woocommerce.zip.file) from this repo.
-
-2. Remove `.file` from the file name.
-
-3. [Upload](https://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation) it to WordPress.
-
 # Installation
 
 > Be sure to install, activate, and configure WooCommerce before installing this plugin. You must also enable shipping and add a [shipping zone](https://docs.woocommerce.com/document/setting-up-shipping-zones/) in your WooCommerce settings to run a charge.
