@@ -781,10 +781,23 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
         // Charge description
         //$chargeio_charge_data['description'] = $this->get_charge_description();
 
+        $chargeio_charge_data['source_id'] = $this->generate_source_id();
+
         // Create the charge on ChargeIO's servers - this will charge the user's card
         $charge = CIO4WC_API::create_charge( $chargeio_charge_data );
 
         $this->charge = $charge;
         $this->transaction_id = $charge->id;
+    }
+
+    /**
+     *  Generates a URI to identify the source of a transaction.
+     *
+     * @access      private
+     * @return      string
+     */
+    private function generate_source_id() {
+        $order_key =  ($this->order->order_key != null ?  $this->order->order_key : current_time('timestamp'));
+        return 'affinipay-woocommerce://'. $_SERVER['SERVER_NAME'] .'?'. $order_key;
     }
 }
