@@ -436,8 +436,6 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
         if ( $this->send_to_chargeio( $order_id ) ) {
             $this->order_complete();
 
-            $this->order->reduce_order_stock();
-
             WC()->cart->empty_cart();
 
             $result = array(
