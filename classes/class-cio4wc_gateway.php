@@ -436,6 +436,8 @@ class CIO4WC_Gateway extends WC_Payment_Gateway_CC {
         if ( $this->send_to_chargeio( $order_id ) ) {
             $this->order_complete();
 
+            WC()->cart->empty_cart();
+
             $result = array(
                 'result' => 'success',
                 'redirect' => $this->get_return_url( $this->order )
